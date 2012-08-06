@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * [7/16/2012] Challenge #77 [easy] (Enumerating Morse code sequences)
+ * [2012/07/16] Challenge #77 [easy] (Enumerating Morse code sequences)
  * <p/>
  * Morse code, as we are all aware, consists of dots and dashes. Lets define a "Morse code sequence" as simply a
  * series of dots and dashes (and nothing else). So ".--.-.--" would be a morse code sequence, for instance.
