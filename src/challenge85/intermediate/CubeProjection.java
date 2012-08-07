@@ -26,45 +26,35 @@ package challenge85.intermediate;
  * but make sure you don't forget the / on the top-right edge.)
  *
  * User: Filipe
- * Date: 06/08/12
+ * Date: 2012/08/06
  */
 public class CubeProjection {
 
     public static void main(String[] args) {
 
-        drawCube(20, 10, 3);
-
+        drawCube(6, 4, 22);
     }
 
     public static void drawCube(final int width, final int height, final int depth) {
 
         for (int i = 0; i < height + depth; i++) {
 
-            for (int j = 0; j < width + depth; j++) {
+            for (int j = 0; j < width + depth && (i + j <= width + height + depth - 2); j++) {
 
-                if (i < depth) {
-                    if (i + j < depth) {
-                        System.out.print(" ");
-                    } else if (j == width + depth - i - 1) {
-                        System.out.print("/");
-                    } else if (j > width + depth - i - 1) {
-                        System.out.print("+");
-                    } else {
-                        System.out.print(":");
-                    }
+                if (i >= depth && j < width) {
+                    System.out.print("#");
+                } else if (i + j < depth) {
+                    System.out.print(" ");
+                } else if (j < width + depth - i - 1) {
+                    System.out.print(":");
+                } else if (j == width + depth - i - 1) {
+                    System.out.print("/");
                 } else {
-                    if (j < width) {
-                        System.out.print("#");
-                    } else if (i + j <= width + height + depth - 2) {
-                        System.out.print("+");
-                    }
+                    System.out.print("+");
                 }
-
             }
 
             System.out.println();
         }
-
     }
-
 }
