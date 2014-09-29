@@ -37,7 +37,7 @@ import static java.time.temporal.ChronoUnit.SECONDS;
  * The lines describing the positions of the speed cameras will look like:
  * Speed camera <number> is <distance> metres down the motorway.
  * Speed camera number 1 will always have a distance of 0.
- * After this, you will get logs for each speed camera, like this:                                               ºº
+ * After this, you will get logs for each speed camera, like this:
  * Start of log for camera <number>:
  * Vehicle <registration number> passed camera <number> at <time>.
  * Vehicle <registration number> passed camera <number> at <time>.
@@ -87,7 +87,7 @@ public class AverageSpeedCameras {
         final LocalTime first = logs.get(i - 1);
         final LocalTime second = logs.get(i);
 
-        final float interval = first.until(second, SECONDS);;
+        final float interval = first.until(second, SECONDS);
         final double speed = 2.237 * distance / interval;
 
         if (speed > speedLimit) {
