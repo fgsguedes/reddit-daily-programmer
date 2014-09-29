@@ -37,7 +37,7 @@ import static java.time.temporal.ChronoUnit.SECONDS;
  * The lines describing the positions of the speed cameras will look like:
  * Speed camera <number> is <distance> metres down the motorway.
  * Speed camera number 1 will always have a distance of 0.
- * After this, you will get logs for each speed camera, like this:
+ * After this, you will get logs for each speed camera, like this:                                               ºº
  * Start of log for camera <number>:
  * Vehicle <registration number> passed camera <number> at <time>.
  * Vehicle <registration number> passed camera <number> at <time>.
@@ -58,7 +58,7 @@ public class AverageSpeedCameras {
     final List<Integer> cameraDistances = new ArrayList<>();
     final Map<String, List<LocalTime>> vehicleLog = new HashMap<>();
 
-    final Path input = Paths.get(AverageSpeedCameras.class.getClassLoader().getResource("challenge181/intermediate/input.txt").toURI());
+    final Path input = Paths.get(AverageSpeedCameras.class.getClassLoader().getResource("challenge181/intermediate/sample-input.txt").toURI());
     final List<String> inputLines = Files.readAllLines(input);
 
     final float speedLimit = Float.parseFloat(inputLines.get(0).replaceAll(speedLimitPattern.pattern(), "$1"));
@@ -66,16 +66,15 @@ public class AverageSpeedCameras {
     inputLines.stream().skip(1).forEach(line -> {
       final Matcher cameraDistancePattern = AverageSpeedCameras.cameraDistancePattern.matcher(line);
       if (cameraDistancePattern.matches()) {
-        cameraDistances.add(Integer.parseInt(cameraDistancePattern.group(1)) - 1, Integer.parseInt(cameraDistancePattern.group(2)));
+        cameraDistances.add(Integer.parseInt(cameraDistancePattern.group(2)));
+
       } else {
 
         final Matcher vehicleLogMatcher = AverageSpeedCameras.vehicleLogPattern.matcher(line);
         if (vehicleLogMatcher.matches()) {
           final String vehicle = vehicleLogMatcher.group(1);
-          final int camera = Integer.parseInt(vehicleLogMatcher.group(2));
-
           final LocalTime time = LocalTime.parse(vehicleLogMatcher.group(3));
-          vehicleLog.computeIfAbsent(vehicle, t -> new ArrayList()).add(camera - 1, time);
+          vehicleLog.computeIfAbsent(vehicle, t -> new ArrayList()).add(time);
         }
       }
     });
